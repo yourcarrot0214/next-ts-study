@@ -14,5 +14,10 @@ module.exports = {
   plugins: ["react"],
   rules: {
     quotes: ["error", "double"],
+    "arrow-body-style": "off",
+    "react/jsx-props-no-spreading": "off",
+    "implicit-arrow-linebreak": "off",
+    "react/jsx-filename-extension": [1, { extends: [".js", ".jsx", ".tsx"] }],
+    "react/react-in-jsx-scope": "off",
   },
 };

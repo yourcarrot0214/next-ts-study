@@ -1,13 +1,18 @@
-import { useState } from "react";
-import { useRouter } from "next/router";
+import React, { useState } from "react";
+import Link from "next/link";
 
 const App = () => {
-  const [name, setName] = useState("");
-  const router = useRouter();
-
+  const [username, setUsername] = useState("");
   return (
     <div>
-      <img src="/favicon.ico" alt="favicon" />
+      <label>
+        username
+        <input value={username} onChange={(e) => setUsername(e.target.value)} />
+      </label>
+      <p>{username} github 검색하기</p>
+      <Link href={`/users/${username}`}>
+        <a>검색하기</a>
+      </Link>
     </div>
   );
 };

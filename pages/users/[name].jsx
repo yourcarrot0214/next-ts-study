@@ -1,7 +1,7 @@
 import Profile from "../../components/Profile";
 import fetch from "isomorphic-unfetch";
 import css from "styled-jsx/css";
-
+import formatDistance from "date-fns/formatDistance";
 const style = css`
   .user-contents-wrapper {
     display: flex;
@@ -89,7 +89,11 @@ const name = ({ user, repos }) => {
               <p className="repository-description">{repo.description}</p>
               <p className="repository-language">
                 {repo.language}
-                <span className="repository-updated-at"></span>
+                <span className="repository-updated-at">
+                  {formatDistance(new Date(repo.updated_at), new Date(), {
+                    addSuffix: true,
+                  })}
+                </span>
               </p>
             </div>
           ))
@@ -120,7 +124,6 @@ export const getServerSideProps = async ({ query }) => {
     if (repoRes.status === 200) {
       repos = await repoRes.json();
     }
-    console.log(repos);
     return { props: { user, repos } };
   } catch (error) {
     console.log(error);
